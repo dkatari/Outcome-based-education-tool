@@ -1,0 +1,77 @@
+{% extends 'OBEAPP/main.html'%}
+{% load mathfilters %}
+{% block content%}
+<h3 style="text-align: center; margin: 10px;">CO Attainment Graph of {{course}}</h3><br><br><br><br>
+
+<div class="row">
+	<div class="col-md">
+		<div class="card card-body">
+
+            <table class="table table-sm">
+                <tr>
+
+                 <th>CO Type</th>
+                <th>CO Attainment</th>
+
+                </tr>
+                 {% for i in ara%}
+                <tr>
+                    <td>CO{{ forloop.counter }}</td>
+                    <td>{{i|div:cnt}}</td>
+                </tr>
+                {% endfor %}
+
+            </table>
+
+        </div>
+
+    </div>
+    <div class="col-md">
+		<div class="card card-body">
+            <canvas id="myChart1" width="50" height="25"></canvas>
+                <script>
+                    var ctx = document.getElementById('myChart1').getContext('2d');
+                    var myChart1 = new Chart(ctx, {
+                        type: 'bar',
+                        data: {
+                            labels: ['CO1','CO2','CO3','CO4','CO5'],
+                    datasets: [{
+                        label: 'CO Attainment Graph of {{course}}',
+                        data: [{% for i in ara %} {{i|div:cnt}},{%endfor %}],
+                        backgroundColor: [
+                            'rgba(255, 99, 132, 1)',
+                            'rgba(54, 162, 235, 1)',
+                            'rgba(255, 206, 86, 1)',
+                            'rgba(75, 192, 192, 1)',
+                            'rgba(153, 102, 255, 1)',
+                            'rgba(255, 159, 64, 1)'
+                        ],
+                            borderColor: [
+                                'rgba(255, 99, 132, 1)',
+                                'rgba(54, 162, 235, 1)',
+                                'rgba(255, 206, 86, 1)',
+                                'rgba(75, 192, 192, 1)',
+                                'rgba(153, 102, 255, 1)',
+                                'rgba(255, 159, 64, 1)'
+                            ],
+                                borderWidth: 1
+                    }]
+                        },
+                    options: {
+                        scales: {
+                            yAxes: [{
+                                ticks: {
+                                    beginAtZero: true
+                                }
+                            }]
+                        }
+                    }
+                    });
+                </script>
+        </div>
+    </div>
+
+</div>
+
+
+{% endblock %}

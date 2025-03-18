@@ -1,0 +1,60 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+  <head>
+    <meta charset="utf-8">
+
+    <!--<link rel="stylesheet" href="stylelog.css"> -->
+    <link rel="stylesheet" href="{% static '/css/stylelog.css'%}"> 
+    <!-- <link rel="stylesheet" href="{% static '/css/stylelog.css'%}"> -->
+
+  </head>
+  <body>
+    <div class="center">
+      <h1>Sign Up</h1>
+      <form method="POST" action="">
+        {% csrf_token %}
+
+        <div class="txt_field">
+          
+           <label>UserName</label> 
+           <br><br>
+           {{form.username}}
+        </div>
+
+        <div class="txt_field">
+          <label>Email</label>
+          <br><br>
+          {{form.email}}
+         
+          
+         
+        </div>
+
+        <div class="txt_field">
+          <label>Password</label>
+          <br><br>
+          {{form.password1}}
+          
+         
+        </div>
+
+        <div class="txt_field">
+          <label>Confirm Password</label>
+          <br><br>
+          {{form.password2}}
+         
+          
+        </div>
+
+        <!-- <input type="submit" value="SignUp" name="Create User"> -->
+        <button type="submit" value="SignUp" name="Create User" class="submit-btn">Submit</button>
+
+      </form>
+      <p style="margin-left: 50px;">Already have an account? <a href="{%url 'login'%}">Login</a></p>
+      {{form.errors}}
+      <!-- <h3>Already have an account? <a href="{%url 'login'%}">Login</a></h3> -->
+    </div>
+
+  </body>
+</html>

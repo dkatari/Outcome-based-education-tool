@@ -1,0 +1,33 @@
+{% extends 'OBEAPP/main.html'%}
+{% block content%}
+<h3 style="text-align: center;">All Semesters</h3>
+
+<div>
+	
+<table class="tbl">
+    <tr id="header">
+       <th>Semesters</th>
+        <th>Result Status</th>
+        <th>Show Result</th>
+
+
+    </tr>
+
+        {% for semester in semesters%}
+       <tr>
+        <td>{{semester.semester}}</td>
+        <td>{{semester.semester.result_status}}</td>
+           <td><a href="{% url 'individualresult' user.student.id %}">View</a></td>
+
+
+
+       </tr>
+    {% endfor %}
+
+</table>
+
+        </div>
+      
+  
+</div>
+{% endblock%}

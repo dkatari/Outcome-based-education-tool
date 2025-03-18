@@ -1,0 +1,45 @@
+{% extends 'OBEAPP/main.html'%}
+{% load static %}
+{% block content %}
+<h2>CO-PO Matrix for {{ course.course.course_name }}</h2>
+
+<form method="POST">
+    {% csrf_token %}
+    <table border="1">
+        <tr>
+            <th>CO / PO</th>
+            {% for po in pos %}
+                <th>{{ po }}</th>
+            {% endfor %}
+        </tr>
+        {% for row in matrix %}
+            <tr>
+                <td>{{ row.0.0 }}</td>  {# CO Code #}
+                {% for co_po in row %}
+                    <td>
+                        <select name="{{ co_po.0 }}_{{ co_po.1 }}">
+                            <option value="" {% if co_po.2 is None %}selected{% endif %}>None</option>
+                            <option value="1" {% if co_po.2 == 1 %}selected{% endif %}>Low</option>
+                            <option value="2" {% if co_po.2 == 2 %}selected{% endif %}>Medium</option>
+                            <option value="3" {% if co_po.2 == 3 %}selected{% endif %}>High</option>
+                        </select>
+                    </td>
+                {% endfor %}
+            </tr>
+        {% endfor %}
+    </table>
+    <div style="text-align: center; margin-top: 20px;">
+        <button type="submit" style=" 
+            background-color: #007BFF; 
+            color: white; 
+            border: none; 
+            padding: 10px 20px; 
+            font-size: 16px;
+            border-radius: 5px;
+            cursor: pointer;">
+            Update
+        </button>
+    </div>
+    
+</form>
+{% endblock %}

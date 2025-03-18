@@ -1,0 +1,58 @@
+@import url('/font-awesome-4.6.3/css/font-awesome.min.css');
+.side__bar{
+    position: fixed;
+    left: 0;
+    top: 0;
+    bottom: 0;
+    z-index: 50;
+    width: 200px;
+    padding-top: 70px;
+    display: flex;
+    flex-direction: column;
+    justify-content:space-around;
+    background-color:#7E685A;
+    color: white;
+   
+   
+}
+
+.side__info img,.side__info i{
+    vertical-align: text-top;
+    padding-left: 15px;
+}
+
+.side__info p{
+  
+    padding: 15px;
+    font-size: large;
+    font-weight: 500;
+    transition:  background-color 0.2s;
+    
+   
+}
+.side__info p:hover{
+    background-color:#9b806f;
+    font-weight:600;
+    cursor: pointer;
+}
+
+.side__info p:active{
+   opacity: 0.8;
+}
+.side__info a{
+    text-decoration: none;
+    color: white;
+}
+
+.side__bar img{
+height: 19px;
+margin-right: 20px;
+
+}
+ .bxs-dashboard,.fa-users,
+ .fa-bar-chart,.bx-notepad,.bxs-cog,.bx-help-circle,.bx-buildings,.bx-book-content,.fa-university{
+    font-size: 19px;
+    margin-right: 20px;
+    
+}
+

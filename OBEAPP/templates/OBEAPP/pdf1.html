@@ -1,0 +1,143 @@
+
+{% block content%}
+{% load mathfilters %}
+
+<style>
+    table {
+      font-family: arial, sans-serif;
+      border-collapse: collapse;
+      width: 100%;
+    }
+    
+    td, th {
+      border: 1px solid #dddddd;
+      text-align: left;
+      padding: 8px;
+    }
+    
+    tr:nth-child(even) {
+      background-color: #dddddd;
+    }
+    </style>
+<div >
+    <h1 align="center">GITAM University</h1>
+    <h6 align="center">AP</h6>
+    <h4 align="center">GRADE SHEET</h4>
+    <h5 align="center">Department of {{student.semester.session.department}}</h5>
+</div>
+<hr>
+<div class="row">
+	<div class="col-md">
+        
+        <h6>Name: {{student.student.name}}</h6>
+        <h6>Registration No: {{student.student.registration_no}}</h6>
+        <h6>Session: {{student.semester.session.session}}</h6>
+    
+		<div class="card card-body">
+            <p title="sans-serif" align="center">{{student.semester}}</p>
+<table >
+
+    <tr >
+        <th>Course No</th>
+        <th>Course Title</th>
+        <th>Credit Hour</th>
+        <th>Letter Grade</th>
+        <th>Grade Point</th>
+    </tr>
+
+     {% for course in courses%}
+      <tr>
+          <td>{{course.course.course.course_code}}</td>
+          <td>{{course.course.course.course_name}}</td>
+          <td>{{course.course.course.credit}}</td>
+          {%if course.tt1|add:course.tt2|add:course.tt3|div:3|add:course.att|add:course.co1|add:course.co2|add:course.co3|add:course.co4|add:course.co5 >= 80 %}
+           <td>A+</td>
+           <td>4.00</td>
+           {%elif course.tt1|add:course.tt2|add:course.tt3|div:3|add:course.att|add:course.co1|add:course.co2|add:course.co3|add:course.co4|add:course.co5 >= 75 %}
+           <td>A</td>
+           <td>3.75</td>
+           {%elif course.tt1|add:course.tt2|add:course.tt3|div:3|add:course.att|add:course.co1|add:course.co2|add:course.co3|add:course.co4|add:course.co5 >= 70 %}
+           <td>A-</td>
+           <td>3.50</td>
+           {%elif course.tt1|add:course.tt2|add:course.tt3|div:3|add:course.att|add:course.co1|add:course.co2|add:course.co3|add:course.co4|add:course.co5 >= 65 %}
+           <td>B+</td>
+           <td>3.25</td>
+           {%elif course.tt1|add:course.tt2|add:course.tt3|div:3|add:course.att|add:course.co1|add:course.co2|add:course.co3|add:course.co4|add:course.co5 >= 60 %}
+           <td>B</td>
+           <td>3.00</td>
+           {%elif course.tt1|add:course.tt2|add:course.tt3|div:3|add:course.att|add:course.co1|add:course.co2|add:course.co3|add:course.co4|add:course.co5 >= 55 %}
+           <td>B-</td>
+           <td>2.75</td>
+           {%elif course.tt1|add:course.tt2|add:course.tt3|div:3|add:course.att|add:course.co1|add:course.co2|add:course.co3|add:course.co4|add:course.co5 >= 50 %}
+           <td>C+</td>
+           <td>2.50</td>
+           {%elif course.tt1|add:course.tt2|add:course.tt3|div:3|add:course.att|add:course.co1|add:course.co2|add:course.co3|add:course.co4|add:course.co5 >= 45 %}
+           <td>C</td>
+           <td>2.25</td>
+           {%elif course.tt1|add:course.tt2|add:course.tt3|div:3|add:course.att|add:course.co1|add:course.co2|add:course.co3|add:course.co4|add:course.co5 >= 40 %}
+           <td>D</td>
+           <td>2.00</td>
+           {%else %}
+           <td>F</td>
+           <td>0.00</td>
+
+            {% endif %}
+
+      </tr>
+    {% endfor %}
+    {% for course in noncourses%}
+      <tr>
+          <td>{{course.course.course.course_code}}</td>
+          <td>{{course.course.course.course_name}}</td>
+          <td>{{course.course.course.credit}}</td>
+          {%if course.tt1|add:course.tt2|add:course.tt3|div:3|add:course.att|add:course.sem >= 80 %}
+           <td>A+</td>
+           <td>4.00</td>
+           {%elif course.tt1|add:course.tt2|add:course.tt3|div:3|add:course.att|add:course.sem >= 75 %}
+           <td>A</td>
+           <td>3.75</td>
+           {%elif course.tt1|add:course.tt2|add:course.tt3|div:3|add:course.att|add:course.sem >= 70 %}
+           <td>A-</td>
+           <td>3.50</td>
+           {%elif course.tt1|add:course.tt2|add:course.tt3|div:3|add:course.att|add:course.sem >= 65 %}
+           <td>B+</td>
+           <td>3.25</td>
+           {%elif course.tt1|add:course.tt2|add:course.tt3|div:3|add:course.att|add:course.sem >= 60 %}
+           <td>B</td>
+           <td>3.00</td>
+           {%elif course.tt1|add:course.tt2|add:course.tt3|div:3|add:course.att|add:course.sem >= 55 %}
+           <td>B-</td>
+           <td>2.75</td>
+           {%elif course.tt1|add:course.tt2|add:course.tt3|div:3|add:course.att|add:course.sem >= 50 %}
+           <td>C+</td>
+           <td>2.50</td>
+           {%elif course.tt1|add:course.tt2|add:course.tt3|div:3|add:course.att|add:course.sem >= 45 %}
+           <td>C</td>
+           <td>2.25</td>
+           {%elif course.tt1|add:course.tt2|add:course.tt3|div:3|add:course.att|add:course.sem >= 40 %}
+           <td>D</td>
+           <td>2.00</td>
+           {%else %}
+           <td>F</td>
+           <td>0.00</td>
+
+            {% endif %}
+
+      </tr>
+    {% endfor %}
+
+
+</table>
+        </div>
+        <h3 align="center" >GPA: {{sum}}</h3>
+        {%if sum >= 2.00 %}
+        <h4 align="center">Remarks = Passed</h4>
+        {% else %}
+        <h4 align="center">Remarks = Failed</h4>
+        {% endif %}
+       
+
+    </div>
+</div>
+
+{% endblock %}

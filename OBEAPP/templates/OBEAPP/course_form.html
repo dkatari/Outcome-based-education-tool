@@ -1,0 +1,14 @@
+
+{% extends 'OBEAPP/main.html'%}
+{% load static%}
+
+
+{% block content%}
+<div class="form-container">
+    <form method="POST"  action="">
+    {% csrf_token %}
+    {{form.as_p}}
+    <button type="submit" name="submit" class="submit-btn">Submit</button>
+    </form>
+</div>
+{% endblock %}

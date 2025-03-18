@@ -1,0 +1,20 @@
+{% extends 'OBEAPP/main.html'%}
+{% block content%}
+{% for dept in department %}
+   
+<a href="{% url 'assignsession' dept.department.id %}">
+        <div class="picture">
+          <div class="pic__thum">
+            <img class="pic" src="/static/images/cseju.jpg" alt="" />
+          </div>
+          <div class="pic__lower">
+            <div class="text"><p>Manage Department of {{dept.department}}</p></div>
+          </div>
+        </div>
+        
+      </a>
+
+    
+    {%endfor%}
+    
+{% endblock %}

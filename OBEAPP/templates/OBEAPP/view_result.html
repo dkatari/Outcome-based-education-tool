@@ -1,0 +1,36 @@
+{% extends 'OBEAPP/main.html'%}
+{% block content%}
+
+{% if semester.result_status == 'PENDING' %}
+<h3>Result of {{semester}} is not Published yet</h3>
+{% else %}
+<p> <h3 style="text-align: center;">Final Result of {{semester}}</h3></p>
+<p align="center" >Total students: {{student_cnt}}</p>
+
+<div>
+<table class="tbl">
+    <tr id="header">
+
+        <th>Registration No</th>
+        <th>Name</th>
+        <th>Result</th>
+
+    </tr>
+
+        {% for student in students %}
+       <tr>
+
+        <td>{{student.student.registration_no}}</td>
+        <td>{{student.student.name}}</td>
+           <td><a class="btn btn-sm btn-info" href="{% url 'individualresult' student.id %}">Show Result</a></td>
+
+
+
+       </tr>
+    {% endfor %}
+
+</table>
+       
+</div>
+{% endif %}
+{% endblock %}

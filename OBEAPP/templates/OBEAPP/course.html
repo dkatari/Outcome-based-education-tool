@@ -1,0 +1,89 @@
+{% extends 'OBEAPP/main.html'%}
+{% block content%}
+<main>
+
+<h3 style="text-align: center;">{{semester.session.department}} {{semester.session.session}} {{semester.semester}}</h3>
+<p align="center">Total courses: {{course_cnt}}</p>
+
+<div class = "action-buttons">
+<a href="{% url 'addassigncourse' semester.id %}" class="anchr">
+    <div class="option-container">
+          <p>Add Course</p>   
+      </div>
+</a>
+
+<a href="{% url 'resultdone' semester.id %}" class="anchr">
+    <div class="option-container">
+          <p>Publish Result</p>   
+      </div>
+</a>
+
+<!-- <a href="{% url 'viewresult' semester.id %}" class="anchr">
+    <div class="option-container">
+          <p>View Result</p>   
+      </div>
+</a> -->
+</div>
+
+
+<div>
+<table class="tbl">
+    <tr id="header">
+        <th>Course Code</th>
+        <th>Select Course</th>
+        <th>Credit</th>
+        <th>Type</th>
+        <th>Format</th>
+        <th>Update</th>
+        <th>Delete</th>
+        <th>AssignTeacher</th>
+        <th>Mark Status</th>
+    </tr>
+
+        {% for course in courses%}
+       <tr>
+        <td>{{course.course.course_code}}</td>
+           <td><a href="{% url 'resultoptionpage' course.id %}">{{course.course.course_name}}</a></td>
+        <td>{{course.course.credit}}</td>
+        <td>{{course.course.course_type}}</td>
+        <td>{{course.format}}</td>
+        <td><a class="btn btn-sm btn-info" href="{% url 'updateassigncourse' course.id %}"><i class="fa fa-pencil-square-o" aria-hidden="true" style=" font-size: 20px;"></i>
+        </a> </td>
+           <td><button type="button" class="btn btn-sm btn-danger"  data-toggle="modal" data-target="#deleteModal{{ course.id }}"><i class="uil uil-trash-alt" style=" font-size: 20px;"></i></a> </td>
+            <td><a class="btn btn-sm btn-info" href="{% url 'assignteacher' course.id %}"><i class="fa fa-user-plus" aria-hidden="true" style=" font-size: 20px;"></i></a> </td>
+           <td>{{course.completion}}</td>
+
+       </tr>
+        <!-- Delete Modal -->
+<div class="modal fade" id="deleteModal{{ course.id }}" tabindex="-1" role="dialog" aria-labelledby="deleteModalLabel{{ course.id }}" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="deleteModalLabel{{ course.id }}">Delete Course</h5>
+          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+          </button>
+        </div>
+        <div class="modal-body">
+          Are you sure you want to delete the course "{{course.course.course_name}}"?
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancel</button>
+          <form action="{% url 'deleteassigncourse' course.id %}" method="POST">
+            {% csrf_token %}
+            <input type="hidden" name="course_id" value="{{ course.id }}">
+            <button type="submit" class="btn btn-danger">Delete</button>
+          </form>
+        </div>
+      </div>
+    </div>
+  </div>
+       {% endfor %}
+
+</table>
+       
+</div>
+    
+
+</main>
+{% endblock %}

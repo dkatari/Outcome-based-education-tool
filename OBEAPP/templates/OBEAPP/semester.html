@@ -1,0 +1,81 @@
+{% extends 'OBEAPP/main.html'%}
+{% block content%}
+<h3 style="text-align: center;">{{session.department}} {{session.session}}</h3><br>
+
+<div>
+<a href="{% url 'addassignsemester' session.id%}" class="anchr">
+    <div class="addDept-container">
+        <div class="count-name">
+          <div class="dept"><p>Add Semester</p></div>
+          <div class="deptCnt"><p>Total:{{semester_cnt}}</p></div>
+        </div>  
+        <div class="content-pic">
+            <img src="/static/images/semester.png" alt="" style="height: 50px;width: 70%;">
+        </div>    
+      </div>
+    </a>
+
+    <!-- <a href="#" class="anchr">
+        <div class="addDept-container">
+            <div class="count-name">
+              <div class="dept"><p>View Students</p></div>
+              <div class="deptCnt"><p>Total: 58</p></div>
+            </div>  
+            <div class="content-pic">
+                <img src="/static/images/student.jpg" alt="">
+            </div>    
+          </div>
+        </a>
+
+    </div><br> -->
+
+<div>	
+<table class="tbl">
+    <tr id="header">
+        <th>Select Semesters</th>
+        <th>Update</th>
+        <th>Delete</th>
+        <th>Result Status</th>
+    </tr>
+
+        {% for semester in semesters%}
+       <tr>
+
+        <td><a href="{% url 'assigncourse' semester.id%}">{{semester.semester.semester}}</a></td>
+         <td><a class="btn btn-sm btn-info" href="{% url 'updateassignsemester' semester.id %}"><i class="fa fa-pencil-square-o" aria-hidden="true" style=" font-size: 20px;"></i>
+         </a> </td>
+           <td><button type="button" class="btn btn-sm btn-danger"  data-toggle="modal" data-target="#deleteModal{{ semester.id  }}"><i class="uil uil-trash-alt" style=" font-size: 20px;"></i></a> </td>
+           <td>{{semester.result_status}}</td>
+
+       </tr>
+        <!-- Delete Modal -->
+<div class="modal fade" id="deleteModal{{ semester.id }}" tabindex="-1" role="dialog" aria-labelledby="deleteModalLabel{{ semester.id }}" aria-hidden="true">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="deleteModalLabel{{ semester.id }}">Delete Semester</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        Are you sure you want to delete the semester "{{ semester.semester.semester }}"?
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancel</button>
+        <form action="{% url 'deleteassignsemester' semester.id %}" method="POST">
+          {% csrf_token %}
+          <input type="hidden" name="semester_id" value="{{ semester.id }}">
+          <button type="submit" class="btn btn-danger">Delete</button>
+        </form>
+      </div>
+    </div>
+  </div>
+</div>
+    {% endfor %}
+
+</table>
+  
+</div>
+
+{% endblock %}

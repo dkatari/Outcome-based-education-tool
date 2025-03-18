@@ -1,0 +1,66 @@
+{% load static %}
+<style>
+   .hello-msg{
+       font-size: 18px;
+       margin-right: 20px;
+   }
+</style>
+
+<header class="header">
+
+  <section class="sec__left">
+    
+    <img src="\static\images\OBE.png" alt="OBE-logo">
+
+  </section>
+<!-- 
+  <section class="sec__mid">
+    <input class="search__bar" type="search" name="" id="" placeholder="Search">
+    <button class="search__icon"><i class='bx bx-search' ></i></button>
+    <button class="micro__icon"><i class='bx bxs-microphone'></i></button>
+  </section> -->
+
+  <section class="sec__right">    
+    <a href="{%url 'logout' %}" style="color: black;font-size: 18px;"><span><i class="fa fa-sign-out" aria-hidden="true">Logout</i></span></a>
+  </section>
+  
+</header>
+
+<aside>
+  <section class="side__bar">
+    <div class="side__info">
+      {%if request.user.teacher %}
+      <a href="{%url 'teacher_page'%}" style="text-decoration: none; color: white;"><p><i class='bx bxs-dashboard'></i>Dashboard</p></a>
+      {%elif request.user.student%}
+      <a href="{%url 'student_page'%}" style="text-decoration: none; color: white;"><p><i class='bx bxs-dashboard'></i>Dashboard</p></a>
+      
+      {%else%}
+      <a href="{%url 'main'%}" style="text-decoration: none; color: white;"><p><i class='bx bxs-dashboard'></i>Dashboard</p></a>
+      {%endif%}
+      <!-- <a href="{% url 'faculty' %}" style="text-decoration: none; color: white;"><p><i class="fa fa-university" aria-hidden="true"></i>Faculty</p></a> -->
+      <a href="{% url 'department' %}"><P><i class='bx bx-buildings' ></i>Department</P></a>
+      <!-- <p><img src="/static/images/teacher.png">Teachers</p>
+      <p><img src="/static/images/student.jpg"></i>Students</p> -->
+      <p><i class='bx bx-book-content'></i>Courses</p>
+      <!-- <p><i class="fa fa-users" aria-hidden="true"></i>Employees</p> -->
+      <!-- <p><i class="fa fa-bar-chart" aria-hidden="true"></i>Analytics</p>
+      <p><i class='bx bx-notepad'></i>Notices</p> -->
+      {%if request.user.teacher%}
+      <a href="{%url 'teacheraccount'%}" style="text-decoration: none; color: white;"><p><i class='bx bxs-cog'></i>Profile</p></a>
+      {%elif request.user.student%}
+      <a href="{%url 'studentaccount'%}" style="text-decoration: none; color: white;"><p><i class='bx bxs-cog'></i>Profile</p></a>
+      
+      {%else%}
+      <p><i class='bx bxs-cog'></i>Profile</p></a>
+      {%endif%}
+      <!-- <p><i class='bx bx-help-circle' ></i>Help</p> -->
+      
+    
+    </div>
+  </section>
+
+</aside>
+
+<footer class="footer">
+  <p><i>GITAM</i></p>
+</footer>

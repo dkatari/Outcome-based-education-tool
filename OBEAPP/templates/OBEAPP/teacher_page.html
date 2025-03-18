@@ -1,0 +1,42 @@
+{% extends 'OBEAPP/main.html'%}
+{% block content%}
+<h3 style="text-align: center;">Assigned Courses</h3>
+<p align="center">Total courses: {{course_cnt}}</p>
+<div>
+	
+<table class="tbl">
+    <tr id="header">
+        <th>Course Code</th>
+        <th>Select Course</th>
+        <th>Credit Hour</th>
+        <th>Course Type</th>
+
+        <th>Semester</th>
+        <th>Marks</th>
+
+
+    </tr>
+
+        {% for course in courses%}
+       <tr>
+        <td>{{course.course.course.course_code}}</td>
+           <td><a href="{% url 'resultoptionpage' course.course.id %}">{{course.course.course.course_name}}</a></td>
+        <td>{{course.course.course.credit}}</td>
+        <td>{{course.course.course.course_type}}</td>
+
+           <td>{{course.course.semester}}</td>
+           <td>{{course.course.completion}}</td>
+
+
+       </tr>
+    {% endfor %}
+
+</table>
+   
+
+        </div>
+       
+   
+</div>
+
+{% endblock %}

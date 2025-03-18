@@ -1,0 +1,81 @@
+@import url('https://fonts.googleapis.com/css2?family=Roboto&display=swap');
+*{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+body{
+   
+    font-family: 'Roboto', sans-serif;
+    padding-top: 120px;
+    padding-left: 220px;
+    padding-right: 20px;
+    padding-bottom: 50px;
+    border: 1px;
+    
+}
+
+
+/* Center the main content */
+main {
+    display: flex;
+    justify-content: center;  /* Center horizontally */
+    align-items: center;  /* Center vertically */
+    min-height: 80vh;  /* Adjust for proper alignment */
+    flex-wrap: wrap;
+    gap: 30px;  /* Space between elements */
+}
+
+/* Style for the department, student, and faculty containers */
+.container {
+    width: 220px;  /* Adjust width */
+    height: 180px;  /* Adjust height */
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    /* border: 1px solid #ddd; Optional */
+    padding: 15px;
+    border-radius: 10px;
+    background-color:  rgba(3, 252, 136, 0.2); /* Optional */
+    /* box-shadow: 0px 4px 6px #1ab72f5b; Optional shadow */
+    
+    
+}
+
+
+/* Ensure images & icons are properly aligned */
+.content-pic img, .content-pic i {
+    width: 50px;  /* Adjust size */
+    height: auto;
+    margin-top: 10px;
+    justify-content: center;
+}
+
+.action-buttons {
+    display: flex;
+    justify-content: center;  /* Center elements horizontally */
+    gap: 20px;  /* Space between buttons */
+    margin-bottom: 20px;  /* Add spacing below */
+    flex-wrap: wrap;  /* Ensure responsiveness */
+}
+
+.option-container {
+    text-align: center;
+    padding: 10px 20px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    background-color: #f8f9fa;
+    min-width: 150px; /* Ensure uniform width */
+    background-color:  rgba(3, 252, 136, 0.2); 
+}
+
+.option-wrapper {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr); /* Two per row */
+    gap: 20px; /* Adjust space between items */
+    max-width: 600px; /* Adjust width */
+    margin: auto; /* Center align */
+    justify-items: center; /* Align items properly */
+}

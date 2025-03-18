@@ -1,0 +1,21 @@
+{% extends 'OBEAPP/main.html' %}
+
+{% block content %}
+<h2 style="text-align: center;">PO Attainment for {{ course.course.course_name }}</h2>
+
+<img src="{{ image_url }}" style="display: block; margin: auto; width: 80%;" alt="PO Attainment Graph">
+
+<table border="1" style="margin: auto; text-align: center;">
+    <tr>
+        <th>PO</th>
+        <th>Attainment Level</th>
+    </tr>
+    {% for po, value in po_attainment.items %}
+    <tr>
+        <td>{{ po }}</td>
+        <td>{{ value }}</td>
+    </tr>
+    {% endfor %}
+</table>
+
+{% endblock %}

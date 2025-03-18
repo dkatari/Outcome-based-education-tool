@@ -1,0 +1,53 @@
+{% extends 'OBEAPP/main.html'%}
+{% block content%}
+<style>
+    .done{
+        
+        padding: 10px 30px;
+        margin-left: 42%;
+        margin-right: 40%;
+        margin-top: 2%;
+        text-align: center;
+        width: 200px;
+        box-shadow: 0 0 15px rgba(0, 0, 0, 0.32);
+
+    }
+    .done a{
+        text-decoration: none;
+        color: black;
+        font-weight: 600;
+    }
+    h3{
+        text-align: center;
+    }
+</style>
+<h3>Students enrolled in {{course}}</h3><br>
+
+
+<div>
+<table class="tbl">
+    <tr id="header">
+
+        <th>Exam Roll</th>
+        <th>Select Student</th>
+        <th>Mark Status</th>
+
+    </tr>
+
+        {% for student in students %}
+       <tr>
+
+        <td>{{student.student.student.exam_roll}}</td>
+           <td><a  href="{% url 'assobemark' student.id %}">{{student.student.student.name}}</a></td>
+           <td>{{student.mark}}</td>
+
+
+       </tr>
+    {% endfor %}
+
+</table>
+        </div>
+        <p class="done"><a  href="{% url 'markasdone' course.id %}">Mark as done</a></p>
+    </div>
+
+{% endblock %}

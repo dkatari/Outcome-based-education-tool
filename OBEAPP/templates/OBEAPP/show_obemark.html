@@ -1,0 +1,73 @@
+{% extends 'OBEAPP/main.html' %}
+
+{% block content %}
+<h2 style="text-align: center;">Marks for {{ course.course.course_name }}</h2>
+
+<form method="POST">
+    {% csrf_token %}
+    <table border="1" style="width: 100%; text-align: center; border-collapse: collapse;">
+        <tr>
+            <th rowspan="2">Reg. No</th>
+            <th rowspan="2">Name</th>
+            <th colspan="5">Quizzes</th>
+            <th colspan="2">Assignments</th>
+            <th rowspan="2">Mid</th>
+            <th rowspan="2">Sem</th>
+            <th colspan="10">Course Outcomes (COs)</th>
+        </tr>
+        <tr>
+            <th>Q1</th>
+            <th>Q2</th>
+            <th>Q3</th>
+            <th>Q4</th>
+            <th>Q5</th>
+            <th>A1</th>
+            <th>A2</th>
+            <th>CO1 (Int)</th>
+            <th>CO1 (Ext)</th>
+            <th>CO2 (Int)</th>
+            <th>CO2 (Ext)</th>
+            <th>CO3 (Int)</th>
+            <th>CO3 (Ext)</th>
+            <th>CO4 (Int)</th>
+            <th>CO4 (Ext)</th>
+            <th>CO5 (Int)</th>
+            <th>CO5 (Ext)</th>
+        </tr>
+        
+        {% for student in student_data %}
+        <tr>
+            <td>{{ student.reg_no }}</td>
+            <td>{{ student.name }}</td>
+            <td><input type="number" name="Q1_{{ student.reg_no }}" value="{{ student.Q1 }}" min="0" max="4"></td>
+            <td><input type="number" name="Q2_{{ student.reg_no }}" value="{{ student.Q2 }}" min="0" max="4"></td>
+            <td><input type="number" name="Q3_{{ student.reg_no }}" value="{{ student.Q3 }}" min="0" max="4"></td>
+            <td><input type="number" name="Q4_{{ student.reg_no }}" value="{{ student.Q4 }}" min="0" max="4"></td>
+            <td><input type="number" name="Q5_{{ student.reg_no }}" value="{{ student.Q5 }}" min="0" max="4"></td>
+            <td><input type="number" name="A1_{{ student.reg_no }}" value="{{ student.Assignment1 }}" min="0" max="10"></td>
+            <td><input type="number" name="A2_{{ student.reg_no }}" value="{{ student.Assignment2 }}" min="0" max="10"></td>
+            <td><input type="number" name="Mid_{{ student.reg_no }}" value="{{ student.Mid }}" min="0" max="30"></td>
+            <td><input type="number" name="Sem_{{ student.reg_no }}" value="{{ student.Sem }}" min="0" max="100"></td>
+            
+            {% for co, marks in student.CO_Marks.items %}
+                <td><input type="number" name="{{ co }}_Int_{{ student.reg_no }}" value="{{ marks.Internal }}" min="0" max="14"></td>
+                <td><input type="number" name="{{ co }}_Ext_{{ student.reg_no }}" value="{{ marks.External }}" min="0" max="12"></td>
+            {% endfor %}
+        </tr>
+        {% endfor %}
+    </table>
+
+    <div style="text-align: center; margin-top: 20px;">
+        <button type="submit" style=" 
+            background-color: #007BFF; 
+            color: white; 
+            border: none; 
+            padding: 10px 20px; 
+            font-size: 16px;
+            border-radius: 5px;
+            cursor: pointer;">
+            Update Marks
+        </button>
+    </div>
+</form>
+{% endblock %}

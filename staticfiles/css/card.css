@@ -1,0 +1,126 @@
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap');
+.container{
+    height: 125px;
+    width: 320px;
+    display: inline-block;
+    margin-right: 20px;
+    box-shadow: 0 0 15px rgba(0, 0, 0, 0.32);
+    color:black;
+    margin-left: 45px;
+    margin-bottom: 25px;
+    }
+    .addDept-container{
+    height: 130px;
+    width: 330px;
+    display: inline-block;
+    margin-right: 18px;
+    box-shadow: 0 0 15px rgba(0, 0, 0, 0.32);
+    color:black;
+    margin-left: 45px;
+    }
+    .option-container{
+    height: 80px;
+    width: 300px;
+    display: inline-block;
+    margin-left: 45px;
+    margin-right: 25px;
+    margin-bottom: 20px;
+    box-shadow: 0 0 15px rgba(0, 0, 0, 0.32);
+    color:black;
+    text-align: center;
+    padding: 30px 40px;
+    font-size: large;
+    transition: all 0.2s;
+
+    }
+    .option-container:hover,.container:hover,.addDept-container:hover{
+        font-weight: bold;
+        background-color:beige;
+        cursor: pointer;
+    }
+   
+    .anchr{
+        
+        display: inline-block;
+    }
+    .count-name{
+        display: inline-block;
+        margin-right: 40px;
+       padding: 29px;
+        
+    }
+    .content-pic{
+        display: inline-block;
+        width: 70px;
+       margin-left: 10px;
+       vertical-align:middle;
+       padding-bottom: 60px;
+
+        
+    }
+    .content-pic img{
+    width: 100%;
+    display: inline-block;
+    
+}
+.count{
+   
+   font-size:24px;
+   font-weight: 600;
+   margin-bottom: 5px;
+}
+.name{
+   display: inline-block;
+   color:gray;
+   font-size: 18px;
+   font-weight: 600;
+
+}
+.dept{
+    font-size:20px;
+   font-weight: 600;
+   margin-bottom: 10px;
+  
+}
+.fa-users,.fa-building{
+    font-size: 45px;
+
+}
+.deptCnt{
+
+    display: inline-block;
+   color:#0cbfe3;
+   font-size: 18px;
+   font-weight: 600;
+   margin-top: 10px;
+}
+.picture{
+    height: 350px;
+    width: 980px;
+    display: inline-block;
+    
+    margin-top: 90px;
+    margin-left: 120px;
+    text-decoration: none;
+    box-shadow: 0 0 15px rgba(0, 0, 0, 0.35);
+}
+.pic__thum img{
+    width: 100%;
+    height: 250px;
+}
+.pic__lower{
+
+    display: flex;
+    padding: 30px 10px;
+    align-items: center;
+    justify-content: center;
+    
+}
+.pic__lower .text{
+   
+    font-size:23px;
+    font-weight: 600;
+    margin-bottom: 5px;
+    color: rgb(33, 32, 32);
+    text-decoration: none;
+}

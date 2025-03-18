@@ -1,0 +1,109 @@
+
+*{
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: "Poppins", sans-serif;
+}
+body{
+  margin: 0;
+  padding: 0;
+  /* background-color: #a38e81;; */
+  height: 110vh;
+  overflow: hidden;
+  background-image: linear-gradient(rgba(0,0,0,0.6),rgba(0,0,0,0.6)),url("/static/images/fig.jpg");
+    background-repeat: no-repeat;
+    background-size:100% 95%;
+
+}
+.center{
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 400px;
+  background: white;
+  border-radius: 10px;
+  box-shadow: 10px 10px 15px rgba(0,0,0,0.05);
+  height:  calc(100%-40px-30px);
+  padding-bottom: 30px;
+}
+.center h1{
+  text-align: center;
+  padding: 15px 0;
+  border-bottom: 1px solid silver;
+}
+.center form{
+  padding: 0 50px;
+  box-sizing: border-box;
+}
+form .txt_field{
+  position: relative;
+  border-bottom: 2px solid #adadad;
+  margin: 30px 0;
+}
+.txt_field input{
+  width: 100%;
+  padding: 0 5px;
+  height: 20px;
+  font-size: 16px;
+  border: none;
+  background: none;
+  outline: none;
+}
+.txt_field label{
+  position: absolute;
+  top: 30%;
+  left: 5px;
+  color: #a38e81;
+  padding-bottom: 20px;
+  /* transform: translateY(-50%); */
+  font-size: 16px;
+  pointer-events: none;
+  /* transition: .5s; */
+}
+.txt_field span::before{
+  content: '';
+  position: absolute;
+  top: 40px;
+  left: 0;
+  width: 0%;
+  height: 2px;
+  background: #a38e81;
+  /* transition: .5s; */
+}
+/* .txt_field input:focus ~ label,
+.txt_field input:valid ~ label{
+  top: -10px;
+  color: #a38e81;;
+} */
+
+.pass{
+  margin: -5px 0 20px 5px;
+  color: #a38e81;;
+  cursor: pointer;
+}
+.pass:hover{
+  text-decoration: underline;
+}
+.submit-btn{
+
+  border: none;
+  background-color:#a38e81;
+  border-radius: 5px;
+  padding: 10px 30px;
+  font-weight: 700;
+  margin-left: 100px;
+ color: white;
+  box-shadow: 0 0 10px;
+  margin-top: 10px;
+  transition: all 0.2s;
+  margin-bottom: 20px;
+  cursor: pointer;
+}
+.submit-btn:hover{
+  background-color: #8b6e6e;
+  transition: .5s;
+
+}
+

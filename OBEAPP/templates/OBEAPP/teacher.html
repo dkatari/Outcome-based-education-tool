@@ -1,0 +1,68 @@
+{% extends 'OBEAPP/main.html'%}
+{% block content%}
+<a href="{% url 'addteacher' %}" class="anchr">
+    <div class="container">
+        <div class="count-name">
+          <div class="count"><p>{{teacher_cnt}}</p></div>
+          <div class="name"><p>Add Faculty</p></div>
+        </div>  
+        <div class="content-pic">
+            <img src="/static/images/teacher.png" alt="">
+        </div>    
+      </div>
+    </a>
+<div>
+<table class="tbl">
+    <tr id="header">
+        <th>Name</th>
+        <th>Designation</th>
+        <th>Department</th>
+        <th>Email</th>
+        <th>Phone</th>
+        <th>Status</th>
+        <th>Update</th>
+        <th>Delete</th>
+    </tr>
+
+        {% for teacher in teachers%}
+       <tr>
+        <td>{{teacher.name}}</td>
+        <td>{{teacher.designation}}</td>
+        <td>{{teacher.department}}</td>
+        <td>{{teacher.email}}</td>
+        <td>{{teacher.phone}}</td>
+        <td>{{teacher.status}}</td>
+        <td><a class="btn btn-sm btn-info" href="{% url 'updateteacher' teacher.id %}"><i class="fa fa-pencil-square-o" aria-hidden="true" style=" font-size: 20px;"></i></a> </td>
+        <td><button type="button" class="btn btn-sm btn-danger"  data-toggle="modal" data-target="#deleteModal{{ teacher.id }}"><i class="uil uil-trash-alt" style=" font-size: 20px;"></i></a> </td>
+
+       </tr>
+       <!-- Delete Modal -->
+<div class="modal fade" id="deleteModal{{ teacher.id }}" tabindex="-1" role="dialog" aria-labelledby="deleteModalLabel{{ teacher.id }}" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="deleteModalLabel{{ teacher.id }}">Delete Teacher</h5>
+          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+          </button>
+        </div>
+        <div class="modal-body">
+          Are you sure you want to delete the teacher "{{ teacher.name }}"?
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancel</button>
+          <form action="{% url 'deleteteacher' teacher.id %}" method="POST">
+            {% csrf_token %}
+            <input type="hidden" name="teacher_id" value="{{ teacher.id }}">
+            <button type="submit" class="btn btn-danger">Delete</button>
+          </form>
+        </div>
+      </div>
+    </div>
+  </div>
+    {% endfor %}
+
+</table>
+      
+</div>
+{% endblock %}

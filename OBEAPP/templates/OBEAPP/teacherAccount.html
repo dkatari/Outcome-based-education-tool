@@ -1,0 +1,45 @@
+{% extends 'OBEAPP/main.html'%}
+{% load static %}
+{% block content %}
+
+<style>
+
+    .profile-pic{
+        max-width: 200px;
+        max-height: 200px;
+        margin: 0 auto ;
+        border-radius: 50%;
+    }
+    
+</style>
+
+<br>
+
+<div class="row" style="margin-left: 60px;">
+    <div class="col-md-3">
+        <div class="card card-body"class="profile">
+             {%if request.user.is_assignchairman %}
+                <a class="btn btn-warning" href="{% url 'chairman_page' %}" >&#8592; Back to Profile</a>
+            {%else%}
+            <a class="btn btn-warning" href="{% url 'teacher_page' %}" >&#8592; Back to Profile</a>
+            {%endif%}
+            <hr>
+            <h3 style="text-align: center">Account Settings</h3>
+            <hr>
+
+            <img class="profile-pic" src="{{request.user.teacher.profile_pic.url}}">
+
+
+
+        </div>
+    </div>
+    <div class="col-md-9" style="margin-left: -30px;">
+        <div class="form-container">
+            <form method="POST" action="" enctype="multipart/form-data">
+                {% csrf_token %}
+                {{form.as_p}}
+                <button type="submit" name = "Update Information" class="submit-btn">Update</button>
+            </form>
+       
+</div>
+{% endblock %}

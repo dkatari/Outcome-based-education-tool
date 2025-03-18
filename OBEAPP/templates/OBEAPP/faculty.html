@@ -1,0 +1,69 @@
+{% extends 'OBEAPP/main.html'%}
+{% block content%}
+
+<main>
+
+    <a href="{% url 'addfaculty' %}" class="anchr">
+        <div class="addDept-container">
+            <div class="count-name">
+              <div class="dept"><p>Add Faculty</p></div>
+              <div class="deptCnt"><p>Total:{{fac_cnt}}</p></div>
+            </div>  
+            <div class="content-pic">
+                <i class="fa fa-university" aria-hidden="true" style="font-size: 45px;"></i>
+            </div>    
+          </div>
+        </a>
+
+<div>
+<table class="tbl">
+    <tr id="header">
+        <th>Faculty Name</th>
+        <th>Update</th>
+        <th>Delete</th>
+    </tr>
+
+        {% for faculty in faculties%}
+       <tr>
+
+        <td>{{faculty.name}}</td>
+         <td><a class="btn btn-sm btn-info" href="{% url 'updatefaculty' faculty.id %}"><i class="fa fa-pencil-square-o" aria-hidden="true" style=" font-size: 20px;"></i></a> </td>
+           <td><button type="button" class="btn btn-sm btn-danger"  data-toggle="modal" data-target="#deleteModal{{ faculty.id }}"><i class="uil uil-trash-alt" style=" font-size: 20px;"></i></a> </td>
+
+       </tr>
+       <!-- Delete Modal -->
+<div class="modal fade" id="deleteModal{{ faculty.id }}" tabindex="-1" role="dialog" aria-labelledby="deleteModalLabel{{ faculty.id }}" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="deleteModalLabel{{ faculty.id }}">Delete Faculty</h5>
+          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+          </button>
+        </div>
+        <div class="modal-body">
+          Are you sure you want to delete the faculty "{{ faculty.name }}"?
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancel</button>
+          <form action="{% url 'deletefaculty' faculty.id %}" method="POST">
+            {% csrf_token %}
+            <input type="hidden" name="faculty_id" value="{{ faculty.id }}">
+            <button type="submit" class="btn btn-danger">Delete</button>
+          </form>
+        </div>
+      </div>
+    </div>
+  </div>
+       {% endfor %}
+
+</table>
+       
+</div>
+   
+ 
+
+</main>
+
+
+{% endblock %}

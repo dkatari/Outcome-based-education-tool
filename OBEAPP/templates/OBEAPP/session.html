@@ -1,0 +1,88 @@
+{% extends 'OBEAPP/main.html'%}
+{% block content%}
+<h3 style="text-align: center;">Department of {{dept.name}}</h3><br>
+
+
+<a href="{% url 'addassignsession' dept.id%}" class="anchr">
+    <div class="addDept-container">
+        <div class="count-name">
+          <div class="dept"><p>Add Session</p></div>
+          <div class="deptCnt"><p>Total:{{session_cnt}}</p></div>
+        </div>  
+        <div class="content-pic">
+            <img src="/static/images/session.png" alt="" style="height: 60px;width: 90%;">
+        </div>    
+      </div>
+    </a>
+
+    <!-- <a href="#" class="anchr">
+        <div class="addDept-container">
+            <div class="count-name">
+              <div class="dept"><p>View Students</p></div>
+              <div class="deptCnt"><p>Total: 500</p></div>
+            </div>  
+            <div class="content-pic">
+                <img src="/static/images/student.jpg" alt="">
+            </div>    
+          </div>
+        </a>
+
+        <a href="#" class="anchr">
+            <div class="addDept-container">
+                <div class="count-name">
+                  <div class="dept"><p>View Teachers</p></div>
+                  <div class="deptCnt"><p>Total: 50</p></div>
+                </div>  
+                <div class="content-pic">
+                    <img src="/static/images/teacher.png" alt="">
+                </div>    
+              </div>
+            </a> -->
+
+<div>
+    <br>
+<table class="tbl">
+    <tr id="header">
+        <th>Select Sessions</th>
+        <th>Update</th>
+        <th>Delete</th>
+    </tr>
+
+        {% for session in sessions%}
+       <tr>
+
+        <td><a href="{% url 'assignsemester' session.id %}">{{session.session.startYear}}</a></td>
+         <td><a class="btn btn-sm btn-info" href="{% url 'updateassignsession' session.id%}"><i class="fa fa-pencil-square-o" aria-hidden="true" style=" font-size: 20px;"></i>
+         </a> </td>
+        <td><button type="button" class="btn btn-sm btn-danger"  data-toggle="modal" data-target="#deleteModal{{ session.id }}"><i class="uil uil-trash-alt" style=" font-size: 20px;"></i></a> </td>
+       </tr>
+        <!-- Delete Modal -->
+<div class="modal fade" id="deleteModal{{ session.id }}" tabindex="-1" role="dialog" aria-labelledby="deleteModalLabel{{ session.id }}" aria-hidden="true">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="deleteModalLabel{{session.id }}">Delete Session</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        Are you sure you want to delete the session "{{ session.session.startYear }}"?
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancel</button>
+        <form action="{% url 'deleteassignsession' session.id %}" method="POST">
+          {% csrf_token %}
+          <input type="hidden" name="session_id" value="{{ session.id }}">
+          <button type="submit" class="btn btn-danger">Delete</button>
+        </form>
+      </div>
+    </div>
+  </div>
+</div>
+    {% endfor %}
+
+</table>
+</div>
+
+{% endblock %}

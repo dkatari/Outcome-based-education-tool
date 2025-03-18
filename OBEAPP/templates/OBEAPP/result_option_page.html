@@ -1,0 +1,56 @@
+
+{% extends 'OBEAPP/main.html'%}
+
+{% block content%}
+<main>
+<h2 style="text-align: center;padding: 10px;margin-bottom: 25px;">{{course.course.course_name}}</h2>
+{% if course.format == 'OBE' %}
+    {% if request.user.teacher %}
+    <a href="{% url 'obemark' course.id%}" class="anchr">
+    <div class="option-container">
+          <p>Add Marks in OBE format</p>   
+      </div>
+    </a>
+    {% endif %}
+
+    <div class="option-wrapper">
+    <a href="{% url 'showobemark' course.id%}" class="anchr">
+        <div class="option-container">
+              <p>View OBE Marks</p>   
+          </div>
+        </a>
+
+        <a href="{% url 'copomatrix' course.id%}">
+            <div class="option-container" class="anchr">
+                  <p>View CO-PO Matrix</p>   
+              </div>
+            </a>
+
+            <a href="{% url 'coattgraph' course.id%}" class="anchr">
+                <div class="option-container">
+                      <p>View CO Attainment Graph</p>   
+                  </div>
+                </a>
+                <a href="{% url 'pograph' course.id%}" class="anchr">
+                    <div class="option-container">
+                          <p>View PO Attainment Graph</p>   
+                      </div>
+                    </a>
+{% else %}
+{% if request.user.teacher %}
+<a href="{% url 'nonobemark' course.id%}" class="anchr">
+    <div class="option-container">
+          <p>Add Non-OBE Marks</p>   
+      </div>
+    </a>
+    {% endif %}
+
+    <a href="{% url 'shownonobemark' course.id%}" class="anchr">
+        <div class="option-container">
+              <p>View Non OBE Marks</p>   
+          </div>
+        </a>
+        </div>
+{% endif %}
+</main>
+{% endblock %}
